@@ -1,0 +1,22 @@
+{
+    "name": "rolf/http-client",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rolf\\HttpClient\\": "src/",
+            "Tests\\HttpClient\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rolf",
+            "email": "bubogumy@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "7.0"
+    }
+}
