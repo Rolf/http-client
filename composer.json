@@ -1,13 +1,8 @@
 {
     "name": "rolf/http-client",
-    "require-dev": {
-        "phpunit/phpunit": "^9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "Rolf\\HttpClient\\": "src/",
-            "Tests\\HttpClient\\": "tests/"
-        }
+    "require": {
+        "php": "^7.4|^8.0",
+        "ext-json": "*"
     },
     "authors": [
         {
@@ -15,8 +10,18 @@
             "email": "bubogumy@gmail.com"
         }
     ],
-    "require": {
-        "php": "^7.4|^8.0",
-        "guzzlehttp/guzzle": "7.0"
+    "autoload": {
+        "psr-4": {
+            "Rolf\\HttpClient\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\HttpClient\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "guzzlehttp/guzzle": "^7.2"
     }
 }
