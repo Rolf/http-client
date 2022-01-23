@@ -6,6 +6,7 @@ namespace Rolf\HttpClient\Api;
 
 use Rolf\HttpClient\Client;
 use Rolf\HttpClient\Http\ResponseResolver;
+use function PHPUnit\Framework\returnValue;
 
 abstract class AbstractApi
 {
@@ -26,7 +27,7 @@ abstract class AbstractApi
      */
     protected function get(string $uri, array $params = []): array
     {
-        $response = $this->client->getHttpClient()->get($uri, array_merge([
+        $response = $this->client->getHttpClient()->get($this->composeUrl($uri), array_merge([
             'query' => $params,
         ], $this->client->getHttpClientOptions()));
 
@@ -43,7 +44,7 @@ abstract class AbstractApi
      */
     protected function post(string $uri, array $params = []): array
     {
-        $response = $this->client->getHttpClient()->post($uri, array_merge([
+        $response = $this->client->getHttpClient()->post($this->composeUrl($uri), array_merge([
             'form_params' => $params,
         ], $this->client->getHttpClientOptions()));
 
@@ -60,10 +61,21 @@ abstract class AbstractApi
      */
     protected function put(string $uri, array $params = []): array
     {
-        $response = $this->client->getHttpClient()->put($uri, array_merge([
+        $response = $this->client->getHttpClient()->put($this->composeUrl($uri), array_merge([
             'body' => $params,
         ], $this->client->getHttpClientOptions()));
 
         return ResponseResolver::getContent($response);
+    }
+
+    /**
+     * Формируем адрес для обращения к серверу
+     *
+     * @param string $uri
+     * @return string
+     */
+    private function composeUrl(string $uri): string
+    {
+        return $this->client->getBaseUrl() . $uri;
     }
 }

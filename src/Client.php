@@ -13,6 +13,7 @@ use GuzzleHttp\Client as ClientGuzzle;
 class Client
 {
     private array $httpClientOptions = [];
+    private string $baseUrl = 'https://example.com/';
 
     /**
      * Работа с комментариями
@@ -46,6 +47,24 @@ class Client
     public function setHttpClientOptions(array $httpClientOptions): self
     {
         $this->httpClientOptions = $httpClientOptions;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl(): string
+    {
+        return $this->baseUrl;
+    }
+
+    /**
+     * @param string $baseUrl
+     * @return self
+     */
+    public function setBaseUrl(string $baseUrl): self
+    {
+        $this->baseUrl = $baseUrl;
         return $this;
     }
 }
